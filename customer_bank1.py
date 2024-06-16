@@ -1,52 +1,56 @@
-# %% [markdown]
-# ## Regresie Logistica - Exemplu Bank Customer Data
-
-# %%
-import numpy as np
 import pandas as pd
-
-from pandas import Series, DataFrame
 from sklearn.linear_model import LogisticRegression
+from sklearn.metrics import accuracy_score
+from sklearn.model_selection import train_test_split
 
-# %% [markdown]
-# This bank marketing dataset is open-sourced and available for download at the UCI Machine Learning Repository (https://archive.ics.uci.edu/ml/datasets/Bank+Marketing#).
-# 
-# It was originally created by: [Moro et al., 2014] S. Moro, P. Cortez and P. Rita. A Data-Driven Approach to Predict the Success of Bank Telemarketing. Decision Support Systems, Elsevier, 62:22-31, June 2014
+# Load the data
+data = pd.read_csv("customers.csv")
 
-# %%
-bank_full = pd.read_csv('bank_full_w_dummy_vars.csv')
-bank_full.head()
+# Data preprocessing
+data = pd.get_dummies(data, columns=["job", "marital", "education", "housing", "loan"])
+data["y"] = data["y"].map({"no": 0, "yes": 1})
 
-# %%
-bank_full.info()
+# Split the data into features and target variable
+X = data.iloc[:, :-1]
+y = data["y"]
 
-# %%
-X = bank_full.iloc[:,18:37].values
-y = bank_full.iloc[:,17].values
+# Train-test split
+X_train, X_test, y_train, y_test = train_test_split(
+    X, y, test_size=0.2, random_state=42
+)
 
-# %%
-LogReg = LogisticRegression()
-LogReg.fit(X, y)
+# Model training
+model = LogisticRegression(max_iter=1000)
+model.fit(X_train, y_train)
 
-# %%
-james = np.array([0, 1, 1, 0, 0, 1, 1, 1, 0, 1, 0, 1, 0, 0, 1, 1, 0, 1, 1]).reshape(1, -1)
-y_pred = LogReg.predict(james)
-y_pred_proba = LogReg.predict_proba(james)
-# get name of variable james
+# Model evaluation
+y_pred = model.predict(X_test)
+accuracy = accuracy_score(y_test, y_pred)
+print("Accuracy:", accuracy)
 
-print('Utilizatorul James', 'nu accepta oferta' if y_pred[0] == 1 else 'nu accepta oferta')
-print("Probabilitatea ca el sa accepte: ", y_pred_proba[0][1])
+# Joe's information
+joe_data = pd.DataFrame(
+    {
+        "job": ["management"],
+        "marital": ["married"],
+        "education": ["tertiary"],
+        "housing": ["yes"],
+        "loan": ["no"],
+        "duration": [200],  # Example duration value
+    }
+)
 
-# %%
-bill = np.array([0, 1, 1, 0, 0, 1, 1, 1, 0, 1, 0, 1, 0, 0, 1, 1, 0, 1, 1]).reshape(1, -1)
-y_pred = LogReg.predict(bill)
-y_pred_proba = LogReg.predict_proba(bill)
-# get name of variable james
+# Encode Joe's data
+joe_data = pd.get_dummies(
+    joe_data, columns=["job", "marital", "education", "housing", "loan"]
+)
 
-print('Utilizatorul Bill', 'accepta oferta' if y_pred[0] == 1 else 'nu accepta oferta')
-print("Probabilitatea ca el sa accepte: ", y_pred_proba[0][1])
+# Align Joe's data with the training data columns
+joe_data = joe_data.reindex(columns=X.columns, fill_value=0)
 
-# %%
-
-
-
+# Make predictions for Joe
+joe_pred = model.predict(joe_data)
+if joe_pred[0] == 1:
+    print("Joe is predicted to respond 'yes'.")
+else:
+    print("Joe is predicted to respond 'no'.")

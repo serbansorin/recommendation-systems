@@ -1,0 +1,143 @@
+[
+    {
+        "label": "pandas",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "pandas",
+        "description": "pandas",
+        "detail": "pandas",
+        "documentation": {}
+    },
+    {
+        "label": "LogisticRegression",
+        "importPath": "sklearn.linear_model",
+        "description": "sklearn.linear_model",
+        "isExtraImport": true,
+        "detail": "sklearn.linear_model",
+        "documentation": {}
+    },
+    {
+        "label": "accuracy_score",
+        "importPath": "sklearn.metrics",
+        "description": "sklearn.metrics",
+        "isExtraImport": true,
+        "detail": "sklearn.metrics",
+        "documentation": {}
+    },
+    {
+        "label": "train_test_split",
+        "importPath": "sklearn.model_selection",
+        "description": "sklearn.model_selection",
+        "isExtraImport": true,
+        "detail": "sklearn.model_selection",
+        "documentation": {}
+    },
+    {
+        "label": "data",
+        "kind": 5,
+        "importPath": "customer_bank1",
+        "description": "customer_bank1",
+        "peekOfCode": "data = pd.read_csv(\"customers.csv\")\n# Data preprocessing\ndata = pd.get_dummies(data, columns=[\"job\", \"marital\", \"education\", \"housing\", \"loan\"])\ndata[\"y\"] = data[\"y\"].map({\"no\": 0, \"yes\": 1})\n# Split the data into features and target variable\nX = data.iloc[:, :-1]\ny = data[\"y\"]\n# Train-test split\nX_train, X_test, y_train, y_test = train_test_split(\n    X, y, test_size=0.2, random_state=42",
+        "detail": "customer_bank1",
+        "documentation": {}
+    },
+    {
+        "label": "data",
+        "kind": 5,
+        "importPath": "customer_bank1",
+        "description": "customer_bank1",
+        "peekOfCode": "data = pd.get_dummies(data, columns=[\"job\", \"marital\", \"education\", \"housing\", \"loan\"])\ndata[\"y\"] = data[\"y\"].map({\"no\": 0, \"yes\": 1})\n# Split the data into features and target variable\nX = data.iloc[:, :-1]\ny = data[\"y\"]\n# Train-test split\nX_train, X_test, y_train, y_test = train_test_split(\n    X, y, test_size=0.2, random_state=42\n)\n# Model training",
+        "detail": "customer_bank1",
+        "documentation": {}
+    },
+    {
+        "label": "data[\"y\"]",
+        "kind": 5,
+        "importPath": "customer_bank1",
+        "description": "customer_bank1",
+        "peekOfCode": "data[\"y\"] = data[\"y\"].map({\"no\": 0, \"yes\": 1})\n# Split the data into features and target variable\nX = data.iloc[:, :-1]\ny = data[\"y\"]\n# Train-test split\nX_train, X_test, y_train, y_test = train_test_split(\n    X, y, test_size=0.2, random_state=42\n)\n# Model training\nmodel = LogisticRegression(max_iter=1000)",
+        "detail": "customer_bank1",
+        "documentation": {}
+    },
+    {
+        "label": "X",
+        "kind": 5,
+        "importPath": "customer_bank1",
+        "description": "customer_bank1",
+        "peekOfCode": "X = data.iloc[:, :-1]\ny = data[\"y\"]\n# Train-test split\nX_train, X_test, y_train, y_test = train_test_split(\n    X, y, test_size=0.2, random_state=42\n)\n# Model training\nmodel = LogisticRegression(max_iter=1000)\nmodel.fit(X_train, y_train)\n# Model evaluation",
+        "detail": "customer_bank1",
+        "documentation": {}
+    },
+    {
+        "label": "y",
+        "kind": 5,
+        "importPath": "customer_bank1",
+        "description": "customer_bank1",
+        "peekOfCode": "y = data[\"y\"]\n# Train-test split\nX_train, X_test, y_train, y_test = train_test_split(\n    X, y, test_size=0.2, random_state=42\n)\n# Model training\nmodel = LogisticRegression(max_iter=1000)\nmodel.fit(X_train, y_train)\n# Model evaluation\ny_pred = model.predict(X_test)",
+        "detail": "customer_bank1",
+        "documentation": {}
+    },
+    {
+        "label": "model",
+        "kind": 5,
+        "importPath": "customer_bank1",
+        "description": "customer_bank1",
+        "peekOfCode": "model = LogisticRegression(max_iter=1000)\nmodel.fit(X_train, y_train)\n# Model evaluation\ny_pred = model.predict(X_test)\naccuracy = accuracy_score(y_test, y_pred)\nprint(\"Accuracy:\", accuracy)\n# Joe's information\njoe_data = pd.DataFrame(\n    {\n        \"job\": [\"management\"],",
+        "detail": "customer_bank1",
+        "documentation": {}
+    },
+    {
+        "label": "y_pred",
+        "kind": 5,
+        "importPath": "customer_bank1",
+        "description": "customer_bank1",
+        "peekOfCode": "y_pred = model.predict(X_test)\naccuracy = accuracy_score(y_test, y_pred)\nprint(\"Accuracy:\", accuracy)\n# Joe's information\njoe_data = pd.DataFrame(\n    {\n        \"job\": [\"management\"],\n        \"marital\": [\"married\"],\n        \"education\": [\"tertiary\"],\n        \"housing\": [\"yes\"],",
+        "detail": "customer_bank1",
+        "documentation": {}
+    },
+    {
+        "label": "accuracy",
+        "kind": 5,
+        "importPath": "customer_bank1",
+        "description": "customer_bank1",
+        "peekOfCode": "accuracy = accuracy_score(y_test, y_pred)\nprint(\"Accuracy:\", accuracy)\n# Joe's information\njoe_data = pd.DataFrame(\n    {\n        \"job\": [\"management\"],\n        \"marital\": [\"married\"],\n        \"education\": [\"tertiary\"],\n        \"housing\": [\"yes\"],\n        \"loan\": [\"no\"],",
+        "detail": "customer_bank1",
+        "documentation": {}
+    },
+    {
+        "label": "joe_data",
+        "kind": 5,
+        "importPath": "customer_bank1",
+        "description": "customer_bank1",
+        "peekOfCode": "joe_data = pd.DataFrame(\n    {\n        \"job\": [\"management\"],\n        \"marital\": [\"married\"],\n        \"education\": [\"tertiary\"],\n        \"housing\": [\"yes\"],\n        \"loan\": [\"no\"],\n        \"duration\": [200],  # Example duration value\n    }\n)",
+        "detail": "customer_bank1",
+        "documentation": {}
+    },
+    {
+        "label": "joe_data",
+        "kind": 5,
+        "importPath": "customer_bank1",
+        "description": "customer_bank1",
+        "peekOfCode": "joe_data = pd.get_dummies(\n    joe_data, columns=[\"job\", \"marital\", \"education\", \"housing\", \"loan\"]\n)\n# Align Joe's data with the training data columns\njoe_data = joe_data.reindex(columns=X.columns, fill_value=0)\n# Make predictions for Joe\njoe_pred = model.predict(joe_data)\nif joe_pred[0] == 1:\n    print(\"Joe is predicted to respond 'yes'.\")\nelse:",
+        "detail": "customer_bank1",
+        "documentation": {}
+    },
+    {
+        "label": "joe_data",
+        "kind": 5,
+        "importPath": "customer_bank1",
+        "description": "customer_bank1",
+        "peekOfCode": "joe_data = joe_data.reindex(columns=X.columns, fill_value=0)\n# Make predictions for Joe\njoe_pred = model.predict(joe_data)\nif joe_pred[0] == 1:\n    print(\"Joe is predicted to respond 'yes'.\")\nelse:\n    print(\"Joe is predicted to respond 'no'.\")",
+        "detail": "customer_bank1",
+        "documentation": {}
+    },
+    {
+        "label": "joe_pred",
+        "kind": 5,
+        "importPath": "customer_bank1",
+        "description": "customer_bank1",
+        "peekOfCode": "joe_pred = model.predict(joe_data)\nif joe_pred[0] == 1:\n    print(\"Joe is predicted to respond 'yes'.\")\nelse:\n    print(\"Joe is predicted to respond 'no'.\")",
+        "detail": "customer_bank1",
+        "documentation": {}
+    }
+]
